@@ -17,22 +17,22 @@ public class Player : Entity {
         screenMax = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0));
         myBounds = GetComponent<SpriteRenderer>().bounds;
         area = myBounds.size.x * myBounds.size.y;
-        maxSpeed = .4f;
-        maxForce = .2f;
+        maxSpeed = 2f;
+        maxForce = 2f;
         coef = .2f;
         mass = 1f;
         drag = .98f;
+        speed = 5f;
     }
 
     private void FixedUpdate() {
-        ProcessInputs();
-        //ApplyDrag();
-        UpdatePosition();
-        //StopShip();
-        this.force = Vector3.zero;
+        
     }
     // Update is called once per frame
     void Update () {
-
-	}
+        ProcessInputs();
+        ApplyDrag();
+        UpdatePosition();
+        StopShip();
+    }
 }
