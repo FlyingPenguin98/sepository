@@ -1,0 +1,4 @@
+sceneSetups:
+- path: C:/Users/Robert/Documents/GitHub/sepository/MageGameToBeNamed/Assets/Scenes/gametobedetermined.unity
+  isLoaded: 1
+  isActive: 1

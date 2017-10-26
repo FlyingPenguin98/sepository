@@ -19,19 +19,7 @@ abstract public class Entity : MonoBehaviour {
     protected float mass;
     protected float drag;
     void Start() {
-        position = transform.position;
-        direction = Vector3.zero;
-        force = Vector3.zero;
-        velocity = Vector3.zero;
-        screenMin = Camera.main.ScreenToWorldPoint(Vector3.zero);
-        screenMax = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0));
-        myBounds = GetComponent<SpriteRenderer>().bounds;
-        area = myBounds.size.x * myBounds.size.y;
-        maxSpeed = 1f;
-        maxForce = 2f;
-        coef = .2f;
-        mass = 1f;
-        drag = .98f;
+       
     }
 	
 	// Update is called once per frame
@@ -43,7 +31,7 @@ abstract public class Entity : MonoBehaviour {
         velocity += force;
         velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
         position += velocity;
-        transform.position = position;
+        transform.Translate(velocity);
     }
 
     protected void ApplyForce(Vector3 newforce) {
@@ -53,6 +41,8 @@ abstract public class Entity : MonoBehaviour {
     }
 
     protected void ApplyDrag() {
+        if (direction == Vector3.zero)
+            return;
         Vector3 friction = -1 * direction;
         friction *= coef;
         friction *= velocity.sqrMagnitude * area;
@@ -60,6 +50,9 @@ abstract public class Entity : MonoBehaviour {
     }
 
     protected void ProcessInputs() {
+        direction = Vector3.zero;
+        force = Vector3.zero;
+        velocity = Vector3.zero;
         if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) {
             direction = Vector3.up;
             ApplyForce(direction);

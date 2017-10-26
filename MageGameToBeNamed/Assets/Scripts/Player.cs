@@ -17,8 +17,8 @@ public class Player : Entity {
         screenMax = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0));
         myBounds = GetComponent<SpriteRenderer>().bounds;
         area = myBounds.size.x * myBounds.size.y;
-        maxSpeed = 1f;
-        maxForce = 2f;
+        maxSpeed = .4f;
+        maxForce = .2f;
         coef = .2f;
         mass = 1f;
         drag = .98f;
